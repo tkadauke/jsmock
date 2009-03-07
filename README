@@ -1,0 +1,58 @@
+JS Mock - adds advanced mocking support to your Javascript unit tests
+=====================================================================
+
+About
+-----
+
+jsmock.js is a Javascript extension to the famous unittest.js test framework
+that adds easy-to-use mocking support to any javascript object. It is largely
+inspired by the mocha framework for Ruby.
+
+Installation
+------------
+
+In your Javascript test HTML files, simply include jsmock.js right after you
+include unittest.js like this:
+
+<script src="path/to/unittest.js" type="text/javascript"></script>
+<script src="path/to/jsmock.js" type="text/javascript"></script>
+
+Usage
+-----
+
+(See the inline documentation for details and more examples)
+
+testShouldExpectFunctionCall: function() { with(this) {
+  // $m() makes an object mockable
+  var o = $m(new Object());
+  // tell jsmock that o expects method call foo
+  o.expects('foo');
+  // actually call foo, such that expectation is met. This call can of course
+  // occur anywhere
+  o.foo('a', 'b', 'c');
+}}
+
+Pitfalls
+--------
+
+Internet Explorer 6 and 7 do not allow to change the prototype of DOM elements.
+This means that methods of instances of HTMLElement can not be mocked. You can
+work around this by wrapping those calls in trivial Javascript methods, that can
+be mocked instead.
+
+Dependencies
+------------
+
+- unittest.js
+- prototype.js (which is a dependency of unittest.js anyways)
+
+Compatibility
+-------------
+
+- Safari 3 / 4
+- Internet Explorer 6 / 7
+- Firefox 2 / 3
+
+This is only tested with the Prototype.js and Unittest.js versions that we use.
+Please let us know if it does not work for your particular version so that we
+can look into it.
